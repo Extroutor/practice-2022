@@ -1,0 +1,403 @@
+/** @format */
+@use "sass:map";
+@import "./colors.scss";
+
+.circular-progress {
+  display: flex;
+  width: 100%;
+  height: 450px;
+  justify-content: center;
+
+  .circular-progress-container {
+    position: relative;
+
+    .circle-streaming {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      width: 400px;
+      height: 400px;
+
+      @media (max-width: 426px) {
+        width: 300px;
+        height: 300px;
+      }
+
+      .CircularProgressbar-path {
+        stroke: $secondary;
+      }
+    }
+
+    .circle-receiving {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      width: 400px;
+      height: 400px;
+      @media (max-width: 426px) {
+        width: 300px;
+        height: 300px;
+      }
+
+      .CircularProgressbar-path {
+        stroke: $receiving;
+      }
+    }
+
+    .circle-withdrawn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      width: 370px;
+      height: 370px;
+      @media (max-width: 426px) {
+        width: 270px;
+        height: 270px;
+      }
+
+      .CircularProgressbar-path {
+        stroke: $withdrawn3;
+      }
+    }
+
+    .circle-info {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      top: 00%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10%);
+      width: 300px;
+      height: 300px;
+      line-height: 3.2rem;
+      color: white;
+
+      .time-circle-info {
+        #day-info {
+          color: lightgray;
+          font-size: 1.5rem;
+          line-height: 2rem;
+          text-shadow: 0 0 6px rgba(213, 213, 213, 0.89);
+        }
+
+        #time-info {
+          font-size: 3.5rem;
+          font-weight: bold;
+          text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.89);
+
+          @media (max-width: 426px) {
+            font-size: 2.8rem;
+          }
+
+        }
+
+        #desc-info {
+          font-size: 1.25rem;
+          color: lightgray;
+
+          @media (max-width: 426px) {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  .circle-line {
+    position: absolute;
+    top: 58%;
+    right: 50%;
+    width: 150px;
+
+
+    transform: translateX(50%) translateY(-50%);
+
+    hr {
+      color: darkgray;
+      background-color: darkgray;
+      border-color: darkgray;
+      height: 8px;
+      opacity: 0.7;
+      border-radius: 15px;
+      width: 100%;
+      @media (max-width: 426px) {
+        height: 4px;
+        margin-top: 0;
+      }
+    }
+  }
+
+  .circle-money {
+    position: absolute;
+    top: 70%;
+    right: 50%;
+    transform: translateX(50%) translateY(-50%);
+    width: 300px;
+    text-align: center;
+    color: white;
+    line-height: 0.9rem;
+
+    @media (max-width: 426px) {
+      line-height: normal;
+      top: 67%;
+
+    }
+
+    #streamed {
+      span {
+        color: $secondary;
+      }
+    }
+
+    #withdrawn {
+      span {
+        color: $withdrawn3;
+      }
+    }
+  }
+}
+
+.text-money {
+  color: $navbar-inactive;
+}
+
+.controller-button {
+  border-radius: 10px;
+
+  &:hover {
+    background-color: rgba(169, 169, 169, 0.14);
+    opacity: 0.9;
+
+    * {
+      color: white !important;
+    }
+  }
+
+  button {
+    color: white;
+    line-height: 1rem;
+    padding: 0;
+
+    &:focus {
+      box-shadow: none !important;
+    }
+
+    i {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.modal {
+  .modal-title {
+    background-color: rgb(192, 160, 216, 0.5);
+    border-radius: 8px;
+    font-size: 1rem;
+
+    span {
+      color: $third-color;
+      background-color: transparent;
+    }
+  }
+
+  .row-titles {
+    opacity: 0.7;
+  }
+
+  .details-circles {
+    position: relative;
+
+    .details-circles-texts {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+
+      .details-circles-values {
+        font-size: 2.4rem;
+      }
+
+      .details-circles-titles {
+        color: #7c7c7c;
+      }
+    }
+
+    .details-circles-withdrawn {
+      .CircularProgressbar-path {
+        stroke: $withdrawn3;
+      }
+    }
+
+    .details-circles-received {
+      .CircularProgressbar-path {
+        stroke: $receiving;
+      }
+    }
+
+    .details-circles-streamed {
+      .CircularProgressbar-path {
+        stroke: $secondary;
+      }
+    }
+  }
+
+  .address-title {
+    background-color: #7c7c7c52;
+    display: inline-block;
+    width: 170px;
+    border-radius: 5px;
+    padding: 2px;
+  }
+
+  .amount-value {
+    text-align: right;
+  }
+
+  .time-details {
+    background-color: #7c7c7c28;
+    border-radius: 10px;
+
+    i {
+      font-size: 2rem;
+      margin-right: 4px;
+    }
+  }
+}
+
+.withdraw-button-modal:focus-visible,
+.withdraw-button-modal:focus,
+.withdraw-button-modal:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: $third-color !important;
+}
+
+.modal-content {
+  border-radius: 18px;
+}
+
+.share-button {
+  border-radius: 10px;
+  height: 100%;
+  min-height: 100px;
+
+  .btn:focus {
+    box-shadow: none !important;
+  }
+
+  &:hover {
+    background-color: #b049ff0c;
+
+    button {
+      color: $third-color !important;
+    }
+
+    .share-icon {
+      path {
+        fill: $third-color;
+      }
+    }
+  }
+}
+
+.copied-div {
+  background-color: #7c7c7c28;
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 5px;
+  transition: all 0.8s ease-in-out;
+}
+
+.share-link {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+#withdrawnInput {
+  background: linear-gradient(to right, $third-color 0%, $third-color 0%, #fff 0%, #fff 100%);
+  border: solid 2px $third-color;
+  border-radius: 8px;
+  height: 12px;
+  width: 100%;
+  outline: none;
+  transition: all 450ms ease-in;
+  -webkit-appearance: none;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid $third-color;
+    cursor: pointer;
+  }
+
+  &::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid $third-color;
+    cursor: pointer;
+  }
+
+  &::-ms-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid $third-color;
+    cursor: pointer;
+  }
+}
+
+#streamed {
+  @media (max-width: 426px) {
+    margin: 0;
+    padding: 0;
+  }
+
+}
+
+
+.transaction_part {
+  @media (max-width: 426px) {
+    font-size: 14px;
+    margin-bottom: 12px;
+
+  }
+}
+
+.detailsIcon {
+  @media (max-width: 426px) {
+    width: 35px;
+    height: 35px;
+
+  }
+
+}
+
+.cancelButton {
+  border-color: transparent;
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+.cancelButton:disabled {
+  opacity: 0.5;
+}
+.cancelButton:hover {
+  background-color: transparent;
+}

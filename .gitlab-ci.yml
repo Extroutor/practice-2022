@@ -1,0 +1,23 @@
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  tags:
+    - xcrypt
+  script:
+    - echo "---------------- starting deploy ----------------"
+
+    - echo "---------------- Build ---------------------"
+    - sudo docker build -t controlx .
+    - echo "---------------- Build OK -------------------"
+
+    - echo "---------------- Run ---------------------"
+
+    - sudo docker rm -f /controlx-test || echo "---"
+    - sudo docker run -it -d --restart=always -p 80:3000 --name controlx-test controlx
+
+    - echo "---------------- All OK  ---------------------"
+
+  only:
+    - master
